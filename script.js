@@ -14,40 +14,43 @@ $(function () {
   let currentTimeDay = dayjs();
   $("#currentDay").text(currentTimeDay.format("MM/DD/YYYY"));
 
-  let timePicked = parseInt($(this).parent().attr("id"));
+  // let timePicked = parseInt($(this).parent().attr("id"));
 
   //click event listener for the save button
   $(".saveBtn").on("click", function () {
     let eventCreated = $(this).siblings(".description").val();
 
     // // timePicked is a number now
-    timePicked = parseInt($(this).parent().attr("id"));
+    let timePicked = parseInt($(this).parent().attr("id"));
     console.log(timePicked);
     console.log(typeof timePicked);
     //save in local storage
     localStorage.setItem(timePicked, eventCreated);
   });
 
-  // TODO: Add code to apply the past, present, or future class to each time block by comparing the id to the current hour.
-  // HINTS: How can the id attribute of each time-block be used to conditionally add or remove the past, present, and future classes?
-
   //currentHour is a number now
   let currentHour = parseInt(dayjs().format("HH"));
 
   function checkTime() {
+    // let hourPicked = parseInt($(this).parent().attr("id"));
+    // console.log(typeof hourPicked);
+    // console.log(hourPicked);
+
     $(".time-block").each(function () {
+      let timePicked = parseInt($(this).attr("id"));
+
       if (currentHour === timePicked) {
+        $(this).removeClass("past");
+        $(this).removeClass("future");
         $(this).addClass("present");
-        $(this).removeClass("past");
+      } else if (currentHour > timePicked) {
+        $(this).removeClass("present");
         $(this).removeClass("future");
-      } else if (currentHour < timePicked) {
         $(this).addClass("past");
-        $(this).removeClass("present");
-        $(this).removeClass("future");
       } else {
-        $(this).addClass("future");
         $(this).removeClass("past");
         $(this).removeClass("present");
+        $(this).addClass("future");
       }
     });
   }
