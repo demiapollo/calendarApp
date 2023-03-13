@@ -4,7 +4,7 @@ Business hours are presented for the user to schedule an event. Colors indicate 
 
 ## The deployed site screenshot
 
-![alt text] (./calendarApp_screenshot.png)
+![alt text] (calendarApp_screenshot.png)
 
 ## The deployed site link
 
